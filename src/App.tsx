@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Course from "./pages/Course";
 import Exercise from "./pages/Exercise";
 import Results from "./pages/Results";
+import About from "./pages/About";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/courses/:slug" element={<Course />} />
           <Route path="/courses/:slug/exercise" element={<Exercise />} />
           <Route path="/courses/:slug/results" element={<Results />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<Landing />} />
         </Routes>
       </main>

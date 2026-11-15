@@ -6,6 +6,7 @@ import ui from "../locales/bg/ui.json";
 const links = [
   { to: "/#programs", label: ui.nav.programs },
   { to: "/#stories", label: ui.nav.results },
+  { to: "/about", label: ui.nav.about },
 ];
 
 export default function Navbar() {

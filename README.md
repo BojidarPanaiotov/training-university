@@ -23,6 +23,7 @@ npm run dev
 | `/courses/:slug` | Program lessons |
 | `/courses/:slug/exercise` | Quiz |
 | `/courses/:slug/results` | Score and answer review |
+| `/about` | About page |
 
 Program slugs are stable identifiers (`calisthenics-foundations`, `power-yoga-flow`, `zero-to-5k`, `mobility-stretching`, `hiit-strength`). Quiz results are passed in router state, so opening the results URL directly sends the visitor back to the exercise.
 
