@@ -38,8 +38,8 @@ export default function Landing() {
   return (
     <>
       {/* HERO */}
-      <section className="relative mx-auto grid min-h-[calc(100svh-4rem)] max-w-7xl items-center gap-12 px-5 pb-10 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-6">
-        <div className="relative z-10">
+      <section className="relative mx-auto grid min-h-[calc(100svh-4rem)] max-w-7xl items-center gap-12 px-5 pb-10 pt-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-8">
+        <div className="relative z-10 min-w-0 @container">
           <p className="hud-label flex animate-rise items-center gap-3">
             <span className="flex items-center gap-2 text-accent">
               <span className="h-2 w-2 animate-blink bg-accent" /> {copy.online}
@@ -50,7 +50,7 @@ export default function Landing() {
             </span>
           </p>
 
-          <h1 className="mt-8 font-display text-[clamp(3.2rem,9vw,7.5rem)] font-black uppercase leading-[0.88] tracking-[-0.04em]">
+          <h1 className="mt-8 max-w-full font-display text-[clamp(2.6rem,12cqi,6.5rem)] font-black uppercase leading-[0.88] tracking-[-0.04em]">
             <span className="block animate-rise [animation-delay:100ms]">{copy.headline[0]}</span>
             <span className="outline-text block animate-rise [animation-delay:200ms]">{copy.headline[1]}</span>
             <span className="gradient-text block animate-rise [animation-delay:300ms]">{copy.headline[2]}</span>
@@ -85,7 +85,8 @@ export default function Landing() {
         </div>
 
         {/* HUD orb */}
-        <div className="relative mx-auto aspect-square w-[82%] max-w-[560px] sm:w-full animate-rise [animation-delay:250ms]">
+        <div className="relative mx-auto w-full min-w-0 max-w-[36rem] animate-rise [animation-delay:250ms] @container lg:max-w-none">
+          <div className="relative aspect-square w-full">
           <div className="absolute inset-[12%] rounded-full bg-accent/20 blur-[90px]" />
           <div className="absolute inset-0 animate-spin-slower rounded-full border border-dashed border-white/15" />
           <div className="absolute inset-[6%] animate-spin-slow rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,#d4ff00_70deg,transparent_140deg,transparent_200deg,#00f0ff_260deg,transparent_320deg)] [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))]" />
@@ -122,9 +123,9 @@ export default function Landing() {
                 <div
                   key={label}
                   className="absolute -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: `${50 + 47 * Math.cos(rad)}%`, top: `${50 + 47 * Math.sin(rad)}%` }}
+                  style={{ left: `${50 + 44 * Math.cos(rad)}%`, top: `${50 + 44 * Math.sin(rad)}%` }}
                 >
-                  <span className="block animate-orbit-reverse whitespace-nowrap border border-white/15 bg-ink-950/80 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur sm:text-xs">
+                  <span className="block animate-orbit-reverse whitespace-nowrap border border-white/15 bg-ink-950/80 px-[0.7em] py-[0.35em] font-mono text-[clamp(0.55rem,2.8cqw,0.75rem)] font-bold uppercase tracking-wide text-white backdrop-blur">
                     {label}
                   </span>
                 </div>
@@ -132,7 +133,7 @@ export default function Landing() {
             })}
           </div>
 
-          <div className="absolute -left-2 top-[14%] animate-float border border-white/10 bg-ink-950/80 p-3 backdrop-blur-xl sm:-left-8 sm:p-4">
+          <div className="absolute left-[2%] top-[12%] animate-float border border-white/10 bg-ink-950/80 p-3 backdrop-blur-xl">
             <Corners />
             <p className="hud-label flex items-center gap-1.5 !text-[9px]">
               <Activity className="h-3 w-3 text-pulse" /> {ui.hud.heartRate}
@@ -143,7 +144,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="absolute -right-2 bottom-[16%] animate-float border border-white/10 bg-ink-950/80 p-3 backdrop-blur-xl [animation-delay:-3s] sm:-right-6 sm:p-4">
+          <div className="absolute bottom-[14%] right-[2%] animate-float border border-white/10 bg-ink-950/80 p-3 backdrop-blur-xl [animation-delay:-3s]">
             <Corners className="border-plasma" />
             <p className="hud-label flex items-center gap-1.5 !text-[9px]">
               <Flame className="h-3 w-3 text-orange-400" /> {ui.hud.burned}
@@ -155,6 +156,7 @@ export default function Landing() {
 
           <div className="absolute bottom-[2%] left-[8%] hidden animate-float border border-accent/40 bg-accent px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-ink-950 [animation-delay:-1.5s] sm:block">
             <Zap className="mr-1 inline h-3 w-3" /> {copy.streak}
+          </div>
           </div>
         </div>
       </section>
