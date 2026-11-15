@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Unbounded", "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink-950: #030405;
+  --color-ink-900: #080a0d;
+  --color-ink-800: #10141a;
+  --color-accent: #d4ff00;
+  --color-plasma: #00f0ff;
+  --color-pulse: #ff2e63;
+
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.35s ease-out both;
+  --animate-orbit: orbit 40s linear infinite;
+  --animate-orbit-reverse: orbit 40s linear infinite reverse;
+  --animate-spin-slow: orbit 22s linear infinite;
+  --animate-spin-slower: orbit 60s linear infinite reverse;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-scan: scan 4s ease-in-out infinite;
+  --animate-ecg: ecg 3s linear infinite;
+  --animate-blink: blink 1.2s steps(2, start) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(6%, 8%) scale(1.15); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.96); }
+    60% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+  @keyframes orbit {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scan {
+    0%, 100% { top: 8%; opacity: 0; }
+    15%, 85% { opacity: 1; }
+    50% { top: 88%; }
+  }
+  @keyframes ecg {
+    from { stroke-dashoffset: 1200; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes blink {
+    to { visibility: hidden; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@utility chamfer {
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-950 font-sans text-zinc-300 antialiased selection:bg-accent selection:text-ink-950;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent via-lime-200 to-plasma bg-clip-text text-transparent;
+  }
+  .outline-text {
+    color: var(--color-ink-950);
+    -webkit-text-stroke: 3px rgba(255, 255, 255, 0.85);
+    paint-order: stroke fill;
+  }
+  .hud-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.25em] text-zinc-400;
+  }
+  .btn-primary {
+    @apply chamfer inline-flex items-center justify-center gap-2 bg-accent px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-widest text-ink-950 transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border border-white/20 px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-widest text-white transition hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
